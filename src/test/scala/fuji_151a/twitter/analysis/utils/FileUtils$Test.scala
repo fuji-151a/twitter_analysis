@@ -15,6 +15,7 @@ class FileUtils$Test extends Assertions {
     val fileName = "201501010000.tar.gz"
     filePath = FileUtils.getClass.getClassLoader.getResource(fileName).getPath()
   }
+
   @Test
   def fromGzipTest():Unit = {
     val bfs = FileUtils.fromGzip(filePath)
@@ -24,9 +25,11 @@ class FileUtils$Test extends Assertions {
     assert(actual == expected)
   }
 
-  def isNull(v: Any) = Option(v) match {
-    case null => println("null")
-    case Some(x) => println("nullじゃない何か")
-    case None    => println("nullだ！")
+  @Test
+  def getFilesInDirTest():Unit = {
+    val path = "./src/test/resources"
+    val list = FileUtils.getFilesInDir(path)
+    assert(list(0).getName == "201501010000.json")
+    assert(list(1).getName == "201501010000.tar.gz")
   }
 }

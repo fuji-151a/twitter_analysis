@@ -1,6 +1,6 @@
 package fuji_151a.twitter.analysis.utils
 
-import java.io.{BufferedInputStream, FileInputStream}
+import java.io.{File, BufferedInputStream, FileInputStream}
 import java.util.zip.GZIPInputStream
 
 import scala.io.BufferedSource
@@ -14,7 +14,7 @@ object FileUtils {
    * @param file gzipの形式で圧縮されてるテキスト形式のファイル
    * @param enc エンコード
    */
-  def fromGzip(file: String, enc:String = "UTF-8" ): BufferedSource = {
+  def fromGzip(file: String, enc: String = "UTF-8" ): BufferedSource = {
     io.Source.fromInputStream(
       new GZIPInputStream(
         new BufferedInputStream(
@@ -23,4 +23,9 @@ object FileUtils {
       )
       ,enc )
   }
+
+  def getFilesInDir(dirPath:String):Seq[File] = {
+    new File(dirPath).listFiles.toSeq
+  }
+
 }
