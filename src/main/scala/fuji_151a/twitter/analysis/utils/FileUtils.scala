@@ -1,6 +1,6 @@
 package fuji_151a.twitter.analysis.utils
 
-import java.io.{File, BufferedInputStream, FileInputStream}
+import java.io.{BufferedInputStream, File, FileInputStream}
 import java.util.zip.GZIPInputStream
 
 import scala.io.BufferedSource
