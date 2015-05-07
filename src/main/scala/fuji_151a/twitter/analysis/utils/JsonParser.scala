@@ -7,7 +7,7 @@ import twitter4j.JSONObject
  */
 object JsonParser {
 
-  def parseJson(text:String) = {
+  def parseTweetData(text:String) = {
     new JSONObject(text)
   }
 }

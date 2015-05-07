@@ -1,5 +1,8 @@
 package fuji_151a.twitter.analysis
 
+import fuji_151a.twitter.analysis.utils.{ConvertUtils, JsonParser}
+
+import scala.collection.mutable
 import scala.io.Source
 
 /**
@@ -7,14 +10,30 @@ import scala.io.Source
  */
 class TweetCount {
 
+  private var cnt: mutable.HashMap[String, Int] = mutable.HashMap()
+
   def tweetCountFromFile(file: String, enc: String = "UTF-8"): Int = {
-    val source = Source.fromFile(file)
-    try {
-      source.getLines().size
-    } catch {
-      case e:Exception => println(e); 0
-    } finally {
-      source.close
+    Source.fromFile(file).getLines().size
+  }
+
+  def tweetCountSegHour(tweetData: String) = {
+    val parseData = JsonParser.parseTweetData(tweetData)
+    val timeMs = parseData.get("timestamp_ms").toString.toLong
+    val format = "yyyyMMddHH"
+    val date = ConvertUtils.unix2Date(timeMs, format)
+    tweetCount(date)
+  }
+
+  private def tweetCount(date: String) = {
+    if (cnt.contains(date)) {
+      val num:Int= cnt.get(date).get + 1
+      cnt.put(date, num)
+    } else {
+      cnt.put(date, 1)
     }
+  }
+
+  def getCnt() = {
+    cnt
   }
 }

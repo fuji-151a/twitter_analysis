@@ -14,6 +14,7 @@ dependencies {
     testCompile 'org.scalatest:scalatest_2.11:2.2.4'
     compile 'org.json4s:json4s-native_2.11:3.2.11'
     compile 'org.twitter4j:twitter4j-core:4.0.3'
+    compile 'joda-time:joda-time:2.7'
 }
 
 
