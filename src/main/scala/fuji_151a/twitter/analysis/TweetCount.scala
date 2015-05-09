@@ -1,5 +1,7 @@
 package fuji_151a.twitter.analysis
 
+import java.io.File
+
 import fuji_151a.twitter.analysis.utils.{ConvertUtils, JsonParser}
 
 import scala.collection.mutable
@@ -31,6 +33,14 @@ class TweetCount {
     } else {
       cnt.put(date, 1)
     }
+  }
+
+  def tweetCount(fileList:Seq[File]) = {
+    var count = 0
+    for (file <- fileList) {
+      count += tweetCountFromFile(file.getAbsolutePath)
+    }
+    count
   }
 
   def getCnt() = {

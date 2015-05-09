@@ -1,6 +1,8 @@
 package fuji_151a.twitter.analysis
 
-import fuji_151a.twitter.analysis.utils.TestEnv
+import java.io.File
+
+import fuji_151a.twitter.analysis.utils.{FileUtils, TestEnv}
 import org.junit.{Before,Test}
 import org.scalatest.Assertions
 /**
@@ -13,7 +15,7 @@ class TweetCountTest extends Assertions {
 
   @Before
   def setUp:Unit = {
-    val fileName = "201501010000.json"
+    val fileName = "json/201501010000.json"
     val twcntTest = new TweetCountTest()
     filePath = twcntTest.getClass.getClassLoader.getResource(fileName).getPath
   }
@@ -35,6 +37,15 @@ class TweetCountTest extends Assertions {
       twcnt.tweetCountSegHour(testData)
     }
     val actual = twcnt.getCnt().get("2015010100").get
+    assert(actual == expected)
+  }
+
+  @Test
+  def tweetCountTest():Unit = {
+    val twc = new TweetCount
+    val fileList:Seq[File] = FileUtils.getFilesInDir("./src/test/resources/json")
+    val actual = twc.tweetCount(fileList)
+    val expected = 36398
     assert(actual == expected)
   }
 }

@@ -12,7 +12,7 @@ class FileUtils$Test extends Assertions {
 
   @Before
   def setUp():Unit = {
-    val fileName = "201501010000.tar.gz"
+    val fileName = "gz/201501010000.tar.gz"
     filePath = FileUtils.getClass.getClassLoader.getResource(fileName).getPath()
   }
 
@@ -27,9 +27,9 @@ class FileUtils$Test extends Assertions {
 
   @Test
   def getFilesInDirTest():Unit = {
-    val path = "./src/test/resources"
+    val path = "./src/test/resources/json/"
     val list = FileUtils.getFilesInDir(path)
     assert(list(0).getName == "201501010000.json")
-    assert(list(1).getName == "201501010000.tar.gz")
+
   }
 }
