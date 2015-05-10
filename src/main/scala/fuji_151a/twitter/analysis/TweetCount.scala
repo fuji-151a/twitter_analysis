@@ -18,10 +18,9 @@ class TweetCount {
     Source.fromFile(file).getLines().size
   }
 
-  def tweetCountSegHour(tweetData: String) = {
+  def tweetCountSegHour(tweetData: String, format: String) = {
     val parseData = JsonParser.parseTweetData(tweetData)
     val timeMs = parseData.get("timestamp_ms").toString.toLong
-    val format = "yyyyMMddHH"
     val date = ConvertUtils.unix2Date(timeMs, format)
     tweetCount(date)
   }

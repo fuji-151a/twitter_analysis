@@ -26,8 +26,10 @@ object TweetCountMain {
         val count = dayTweetCnt(fileList)
         println(date.replace("/", "") + "\t" + count)
       case "-h" => val count = hourTweetCnt(fileList)
-        for((key, value) <- count) {
-          println("%s\t%s".format(key, value))
+        val sortKey = count.keySet.toSeq
+        println("time\tcount")
+        for(key <- sortKey.sorted) {
+          println("%s\t%s".format(key, count.get(key).get))
         }
     }
   }
@@ -39,9 +41,10 @@ object TweetCountMain {
 
   private def hourTweetCnt(fileList:Seq[File]) = {
     val twa:TweetCount = new TweetCount
+    val format = "yyyy-MM-dd-HH"
     for (file <- fileList) {
       for(line <- Source.fromFile(file.getAbsolutePath).getLines) {
-        twa.tweetCountSegHour(line)
+        twa.tweetCountSegHour(line, format)
       }
     }
     twa.getCnt()

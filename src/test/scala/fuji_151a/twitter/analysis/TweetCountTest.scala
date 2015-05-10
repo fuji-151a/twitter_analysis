@@ -32,9 +32,10 @@ class TweetCountTest extends Assertions {
   def tweetCountSegHourTest():Unit = {
     val twcnt = new TweetCount
     val expected = 10
+    val format = "yyyyMMddHH"
     for (i <- 1 to 10) {
       val testData = TestEnv.createTestData()
-      twcnt.tweetCountSegHour(testData)
+      twcnt.tweetCountSegHour(testData, format)
     }
     val actual = twcnt.getCnt().get("2015010100").get
     assert(actual == expected)
