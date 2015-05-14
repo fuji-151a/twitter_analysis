@@ -41,7 +41,7 @@ object TweetCountMain {
 
   private def hourTweetCnt(fileList:Seq[File]) = {
     val twa:TweetCount = new TweetCount
-    val format = "yyyy-MM-dd-HH"
+    val format = "yyyy-MM-dd HH:00:00"
     for (file <- fileList) {
       for(line <- Source.fromFile(file.getAbsolutePath).getLines) {
         twa.tweetCountSegHour(line, format)
