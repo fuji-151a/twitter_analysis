@@ -45,4 +45,10 @@ class TweetCount {
   def getCnt() = {
     cnt
   }
+
+  def getWordCount(tweetData: String):Int = {
+    val parseData = JsonParser.parseTweetData(tweetData)
+    val text = parseData.get("text").toString;
+    text.length;
+  }
 }
