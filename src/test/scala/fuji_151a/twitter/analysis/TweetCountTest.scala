@@ -24,7 +24,7 @@ class TweetCountTest extends Assertions {
   def tweetCountFromFileTest():Unit = {
     val twcnt = new TweetCount()
     val actual:Int = twcnt.tweetCountFromFile(filePath)
-    val expected:Int = 36398
+    val expected:Int = 10
     assert(actual == expected)
   }
 
@@ -46,7 +46,7 @@ class TweetCountTest extends Assertions {
     val twc = new TweetCount
     val fileList:Seq[File] = FileUtils.getFilesInDir("./src/test/resources/json")
     val actual = twc.tweetCount(fileList)
-    val expected = 36398
+    val expected = 10
     assert(actual == expected)
   }
 }
