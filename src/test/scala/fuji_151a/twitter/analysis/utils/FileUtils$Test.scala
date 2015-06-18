@@ -12,14 +12,14 @@ class FileUtils$Test extends Assertions {
 
   @Before
   def setUp():Unit = {
-    val fileName = "gz/201501010000.tar.gz"
+    val fileName = "gz/201501010000.json.tar.gz"
     filePath = FileUtils.getClass.getClassLoader.getResource(fileName).getPath()
   }
 
   @Test
   def fromGzipTest():Unit = {
     val bfs = FileUtils.fromGzip(filePath)
-    val expected = 36398
+    val expected = 10
     val actual = bfs.getLines().size - 1 // lastの制御文字を除く
 
     assert(actual == expected)
