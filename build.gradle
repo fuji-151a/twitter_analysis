@@ -18,7 +18,6 @@ dependencies {
     compile 'org.chasen.mecab:mecab-java:0.993'
 }
 
-
 jar {
     archiveName = "${baseName}-${version}.jar"
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
